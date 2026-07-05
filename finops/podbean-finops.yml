@@ -1,0 +1,98 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Podbean
+providerId: podbean
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Podcasting
+- Podcast Hosting
+- Media
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Podbean spend. Podbean bills as a podcast hosting SaaS on a
+  fixed monthly (or discounted annual) subscription per plan tier - Basic (free),
+  Unlimited Audio, Unlimited Plus, Network, and Business - rather than on metered
+  API usage. The public API does not carry a separate line item; it rides on the
+  account's hosting subscription. Cost drivers are therefore the chosen plan
+  tier, the number of shows/networks, add-ons (extra AI credits, premium
+  bandwidth, ads marketplace), and enterprise/agency agreements - not per-call
+  API charges.
+notes: >-
+  Because pricing is subscription-based, the primary FinOps levers are picking
+  the right tier, consolidating shows under Network/Business where cheaper per
+  show, and committing annually for the discount. Verify current rates and
+  add-ons on the Podbean pricing page.
+sources:
+- https://www.podbean.com/podcast-hosting-pricing
+- https://developers.podbean.com/
+- https://developers.podbean.com/podbean-api-docs/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Podbean
+serviceCategory: Media and Content Hosting
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly or Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Podbean Podcast Hosting
+  ServiceCategory: Media and Content Hosting
+  ProviderName: Podbean
+  PublisherName: Podbean
+  InvoiceIssuerName: Podbean
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: plan_subscription
+  description: Recurring monthly or annual subscription for the chosen Podbean plan tier.
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: upload_volume
+  description: Media uploaded per month against the plan's upload allowance; overage may push a tier upgrade.
+  unit: bytes
+  aggregation: sum
+  dimensions:
+  - account
+  - podcast
+- name: ai_credits
+  description: Monthly AI credits included per tier; additional credits are an add-on cost.
+  unit: credits
+  aggregation: sum
+  dimensions:
+  - account
+- name: shows
+  description: Number of podcasts/shows hosted, relevant to Network/Business per-show economics.
+  unit: shows
+  aggregation: max
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track the active plan tier, number of shows, monthly upload volume, and any add-on charges against the subscription.
+- name: Allocation
+  description: Attribute the subscription and per-show costs to the team or brand that owns each podcast, especially on Network/Business tiers.
+- name: Optimization
+  description: Choose the lowest tier that meets storage/bandwidth needs, consolidate multiple shows under Network/Business where cheaper per show, and commit annually for the discount.
+- name: Accountability
+  description: Review the subscription and add-ons each renewal cycle; confirm the tier still matches actual upload volume and show count.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,311 @@
+{
+  "info": {
+    "name": "Podbean API",
+    "description": "Third-party apps and integrations manage a user's podcast on Podbean via this OAuth 2.0 REST API. Base URL: https://api.podbean.com/v1. Register an app at developers.podbean.com to obtain a Client ID and Secret, then acquire an access token (authorization_code, client_credentials, or the Multiple Podcasts token flow). Write operations use POST with form-encoded bodies.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.podbean.com/v1", "type": "string" },
+    { "key": "clientId", "value": "", "type": "string" },
+    { "key": "clientSecret", "value": "", "type": "string" },
+    { "key": "accessToken", "value": "", "type": "string" },
+    { "key": "episodeId", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login Dialog",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/dialog/oauth?client_id={{clientId}}&redirect_uri=https://example.com/callback&response_type=code&scope=episode_publish",
+              "host": ["{{baseUrl}}"],
+              "path": ["dialog", "oauth"],
+              "query": [
+                { "key": "client_id", "value": "{{clientId}}" },
+                { "key": "redirect_uri", "value": "https://example.com/callback" },
+                { "key": "response_type", "value": "code" },
+                { "key": "scope", "value": "episode_publish" }
+              ]
+            },
+            "description": "Redirect a user here to authorize a third-party app; Podbean returns an authorization code to exchange for a token."
+          }
+        },
+        {
+          "name": "Get Access Token",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "grant_type", "value": "client_credentials" },
+                { "key": "client_id", "value": "{{clientId}}" },
+                { "key": "client_secret", "value": "{{clientSecret}}" }
+              ]
+            },
+            "url": { "raw": "{{baseUrl}}/oauth/token", "host": ["{{baseUrl}}"], "path": ["oauth", "token"] },
+            "description": "Exchange an authorization code, client credentials, or refresh token for an OAuth 2.0 access token."
+          }
+        },
+        {
+          "name": "Inspect Access Token",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [{ "key": "access_token", "value": "{{accessToken}}" }]
+            },
+            "url": { "raw": "{{baseUrl}}/oauth/debugToken", "host": ["{{baseUrl}}"], "path": ["oauth", "debugToken"] },
+            "description": "Returns metadata about an access token - bound podcast, scopes, and expiry."
+          }
+        },
+        {
+          "name": "Get Multiple Podcasts Tokens",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "grant_type", "value": "client_credentials" },
+                { "key": "client_id", "value": "{{clientId}}" },
+                { "key": "client_secret", "value": "{{clientSecret}}" }
+              ]
+            },
+            "url": { "raw": "{{baseUrl}}/oauth/multiplePodcastsToken", "host": ["{{baseUrl}}"], "path": ["oauth", "multiplePodcastsToken"] },
+            "description": "For agencies and networks - obtain per-podcast access tokens for all podcasts the app is authorized to manage."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Podcast",
+      "item": [
+        {
+          "name": "Get Podcast",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/podcast?access_token={{accessToken}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["podcast"],
+              "query": [{ "key": "access_token", "value": "{{accessToken}}" }]
+            },
+            "description": "Returns the profile and settings of the podcast the access token is bound to."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Episode",
+      "item": [
+        {
+          "name": "List Episodes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/episodes?access_token={{accessToken}}&offset=0&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["episodes"],
+              "query": [
+                { "key": "access_token", "value": "{{accessToken}}" },
+                { "key": "offset", "value": "0" },
+                { "key": "limit", "value": "20" }
+              ]
+            },
+            "description": "Lists episodes for the authorized podcast."
+          }
+        },
+        {
+          "name": "Publish New Episode",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "access_token", "value": "{{accessToken}}" },
+                { "key": "title", "value": "My New Episode" },
+                { "key": "content", "value": "Episode show notes." },
+                { "key": "status", "value": "publish" },
+                { "key": "type", "value": "public" },
+                { "key": "media_key", "value": "" },
+                { "key": "logo_key", "value": "" }
+              ]
+            },
+            "url": { "raw": "{{baseUrl}}/episodes", "host": ["{{baseUrl}}"], "path": ["episodes"] },
+            "description": "Publishes a new episode, referencing a media_key from /files/uploadAuthorize."
+          }
+        },
+        {
+          "name": "Read Episode",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/episodes/:id?access_token={{accessToken}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["episodes", ":id"],
+              "query": [{ "key": "access_token", "value": "{{accessToken}}" }],
+              "variable": [{ "key": "id", "value": "{{episodeId}}" }]
+            },
+            "description": "Returns a single episode by its ID."
+          }
+        },
+        {
+          "name": "Update Episode",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "access_token", "value": "{{accessToken}}" },
+                { "key": "title", "value": "Updated Episode Title" }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/episodes/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["episodes", ":id"],
+              "variable": [{ "key": "id", "value": "{{episodeId}}" }]
+            },
+            "description": "Updates an existing episode by ID."
+          }
+        },
+        {
+          "name": "Delete Episode",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [{ "key": "access_token", "value": "{{accessToken}}" }]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/episodes/:id/delete",
+              "host": ["{{baseUrl}}"],
+              "path": ["episodes", ":id", "delete"],
+              "variable": [{ "key": "id", "value": "{{episodeId}}" }]
+            },
+            "description": "Deletes an episode by ID."
+          }
+        }
+      ]
+    },
+    {
+      "name": "File Upload",
+      "item": [
+        {
+          "name": "Authorize File Upload",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/files/uploadAuthorize?access_token={{accessToken}}&filename=episode.mp3&filesize=10485760&content_type=audio/mpeg",
+              "host": ["{{baseUrl}}"],
+              "path": ["files", "uploadAuthorize"],
+              "query": [
+                { "key": "access_token", "value": "{{accessToken}}" },
+                { "key": "filename", "value": "episode.mp3" },
+                { "key": "filesize", "value": "10485760" },
+                { "key": "content_type", "value": "audio/mpeg" }
+              ]
+            },
+            "description": "Returns a presigned URL to PUT the file to, plus a file_key to pass to the Episodes API."
+          }
+        },
+        {
+          "name": "List Media Files",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/medias?access_token={{accessToken}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["medias"],
+              "query": [{ "key": "access_token", "value": "{{accessToken}}" }]
+            },
+            "description": "Lists media files previously uploaded to the authorized podcast."
+          }
+        }
+      ]
+    },
+    {
+      "name": "oEmbed",
+      "item": [
+        {
+          "name": "oEmbed",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/oembed?url=https://www.podbean.com/ew/example&format=json",
+              "host": ["{{baseUrl}}"],
+              "path": ["oembed"],
+              "query": [
+                { "key": "url", "value": "https://www.podbean.com/ew/example" },
+                { "key": "format", "value": "json" }
+              ]
+            },
+            "description": "Returns embeddable player markup and metadata for a Podbean podcast or episode URL. No authentication required."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Podcast Download Reports",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/podcastReports?access_token={{accessToken}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["analytics", "podcastReports"],
+              "query": [{ "key": "access_token", "value": "{{accessToken}}" }]
+            },
+            "description": "Returns download/listen counts for the authorized podcast."
+          }
+        },
+        {
+          "name": "Podcast Engagement Reports",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/podcastEngagementReports?access_token={{accessToken}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["analytics", "podcastEngagementReports"],
+              "query": [{ "key": "access_token", "value": "{{accessToken}}" }]
+            },
+            "description": "Returns listener engagement data for the authorized podcast."
+          }
+        },
+        {
+          "name": "Advertise Reports",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/advertiseReports?access_token={{accessToken}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["analytics", "advertiseReports"],
+              "query": [{ "key": "access_token", "value": "{{accessToken}}" }]
+            },
+            "description": "Returns advertising/monetization report data for the authorized podcast."
+          }
+        }
+      ]
+    }
+  ]
+}

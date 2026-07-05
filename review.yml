@@ -1,0 +1,110 @@
+aid: podbean
+name: Podbean
+review:
+  question: Does Podbean expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-05'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Podbean's documented public API surface
+    (https://api.podbean.com/v1) is entirely request/response REST over HTTPS
+    with OAuth 2.0. There is no server-push transport (WebSocket or SSE) on
+    Podbean's own public API to model. Podbean does operate a Livestream
+    product, but that is an end-user broadcasting feature delivered through
+    Podbean's own apps/players; no public, developer-documented WebSocket (or
+    SSE) streaming endpoint is published for it as of the review date.
+findings:
+  summary: |
+    Podbean does not publish a documented public WebSocket API. Podbean is a
+    podcast hosting, distribution, and monetization platform. Its public
+    developer API (base https://api.podbean.com/v1, docs at
+    developers.podbean.com/podbean-api-docs) is a REST API authenticated with
+    OAuth 2.0 (Authorization Code, Client Credentials, and a Multiple Podcasts
+    token flow for agencies/networks). Documented resources cover
+    Authentication/OAuth, Podcasts, Episodes (list/publish/read/update/delete),
+    File upload authorization, oEmbed, and Analytics reports (download,
+    engagement, advertising). All calls are HTTPS request/response. No
+    realtime, bidirectional, or streaming WebSocket (ws:// or wss://) endpoint
+    is documented anywhere in Podbean's API reference.
+  accessModel: |
+    Public, self-service. Developers register an app at developers.podbean.com
+    to get a Client ID and Secret, then obtain OAuth 2.0 tokens. Third-party
+    apps use the Authorization Code flow (Login Dialog + token exchange) to
+    manage another user's podcast; an app managing its own podcast uses Client
+    Credentials; agencies/networks use the Multiple Podcasts token flow to get
+    per-podcast tokens. Tokens can be inspected (debugToken) and refreshed.
+  productVsApi: |
+    Podbean markets Private Members / patron communities and Livestream as
+    product features (see help.podbean.com). These are surfaced in the Podbean
+    apps and website, but the public developer API reference does not expose
+    dedicated, documented Members or Live resources. This entry models only the
+    documented public REST resources (Podcasts, Episodes, Media/Files, oEmbed,
+    Analytics) and does not fabricate Members or Live API endpoints.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.podbean.com/v1
+      documented: true
+      note: OAuth 2.0 REST API for podcasts, episodes, media upload, oEmbed, and analytics.
+    - protocol: Presigned Upload (HTTP PUT)
+      scheme: https
+      documented: true
+      note: File upload authorization returns a presigned URL; the client PUTs the media/image bytes directly to that URL. Not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in Podbean's public API reference as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://api.podbean.com/v1/dialog/oauth
+    - POST   https://api.podbean.com/v1/oauth/token
+    - POST   https://api.podbean.com/v1/oauth/debugToken
+    - POST   https://api.podbean.com/v1/oauth/multiplePodcastsToken
+    - GET    https://api.podbean.com/v1/podcast
+    - GET    https://api.podbean.com/v1/episodes
+    - POST   https://api.podbean.com/v1/episodes
+    - GET    https://api.podbean.com/v1/episodes/{id}
+    - POST   https://api.podbean.com/v1/episodes/{id}
+    - POST   https://api.podbean.com/v1/episodes/{id}/delete
+    - GET    https://api.podbean.com/v1/files/uploadAuthorize
+    - GET    https://api.podbean.com/v1/medias
+    - GET    https://api.podbean.com/v1/oembed
+    - GET    https://api.podbean.com/v1/analytics/podcastReports
+    - GET    https://api.podbean.com/v1/analytics/podcastEngagementReports
+    - GET    https://api.podbean.com/v1/analytics/advertiseReports
+  endpointNotes: |
+    Core OAuth, Podcast, Episode, File upload, and oEmbed paths are confirmed
+    from Podbean's docs, the api-evangelist/podbean-api reference, apitracker's
+    endpoint index, and an independent open-source client
+    (github.com/ernestas-poskus/podbean). Podbean's write operations are
+    POST/form-encoded rather than PUT/PATCH. The three /analytics/* report
+    paths are modeled from the documented Analytics report categories (Podcast
+    Download Reports, Podcast Engagement Reports, Advertise Reports); exact
+    path spellings should be reconciled against the live docs.
+sources:
+  - url: https://developers.podbean.com/
+    type: Documentation
+    note: Developer platform overview; register app, OAuth 2.0, base API URL.
+  - url: https://developers.podbean.com/podbean-api-docs/
+    type: APIReference
+    note: Full API reference (JS-rendered apidoc). Categories - Authentication, Podcast, Episode, File upload, oEmbed, Analytics. All REST; no WebSocket.
+  - url: https://help.podbean.com/support/solutions/articles/25000008051-publishing-a-new-podcast-episode-via-podbean-api
+    type: Documentation
+    note: Publish-episode walkthrough - OAuth, authorize file upload, then publish with media_key.
+  - url: https://apitracker.io/a/podbean/apis
+    type: Reference
+    note: Endpoint index confirming Authentication, Podcasts, Episodes, File Management, Embed (oEmbed), and Analytics categories. No Members/Live/WebSocket.
+  - url: https://github.com/ernestas-poskus/podbean
+    type: SourceCode
+    note: Independent open-source Rust client; confirms /v1/oauth/token, /v1/files/uploadAuthorize, /v1/episodes, /v1/podcasts, /v1/medias, /v1/dialog/oauth.
+  - url: https://docs.dataddo.com/docs/podbean
+    type: Reference
+    note: Third-party connector confirming the Analytics API is used for Podcast Download and Engagement reports.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists, and Podbean's own public API is
+    request/response REST over HTTPS with OAuth 2.0. No AsyncAPI document was
+    created because there is no server-push transport (WebSocket or SSE) on
+    Podbean's public API to model.

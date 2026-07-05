@@ -1,0 +1,66 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Podbean
+providerId: podbean
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Podcasting
+- Podcast Hosting
+- Rate Limiting
+- Quotas
+description: >-
+  Podbean does not publish fixed numeric rate limits for its public API. Access
+  is gated first by OAuth 2.0 - an app must be registered and hold a valid
+  access token scoped to a podcast (single-podcast via Client Credentials or
+  Authorization Code, or per-podcast via the Multiple Podcasts token flow).
+  Practical throughput is shaped by the account's hosting plan (storage,
+  bandwidth, and monthly upload allowances) rather than by a documented
+  per-minute request cap. Media bytes are not sent through the API - the file
+  upload flow returns a presigned URL that the client PUTs to directly - so
+  large uploads do not consume API request budget.
+notes: >-
+  No per-account or per-endpoint numeric request limits are documented as of the
+  review date. Clients should handle 401 (expired/invalid token) by refreshing,
+  and implement exponential backoff on 429 or 5xx responses. Verify any updated
+  limits in the Podbean API documentation during reconciliation.
+sources:
+- https://developers.podbean.com/podbean-api-docs/
+- https://developers.podbean.com/
+- https://www.podbean.com/podcast-hosting-pricing
+responseCodes:
+  throttled: 429
+  unauthorized: 401
+limits:
+- name: API Requests
+  scope: app
+  metric: requests
+  limit: not published
+  notes: No fixed numeric request-rate limit is documented for the public API.
+- name: OAuth Token Scope
+  scope: token
+  metric: podcasts
+  limit: per token
+  notes: An access token is bound to a single podcast; agencies use Multiple Podcasts tokens for per-podcast access.
+- name: Upload Allowance
+  scope: account
+  metric: bytes
+  limit: per plan (monthly upload allowance)
+  notes: Media upload volume is governed by the hosting plan (e.g., 1GB/mo on Unlimited Audio, up to 40GB/mo on higher tiers).
+- name: Bandwidth
+  scope: account
+  metric: bytes
+  limit: per plan (unmetered on most paid tiers)
+  notes: Playback bandwidth is a hosting-plan attribute, not an API request limit.
+policies:
+- name: OAuth 2.0 Gating
+  description: All non-oEmbed endpoints require a valid OAuth 2.0 access token obtained from a registered app.
+- name: Presigned Uploads
+  description: Media bytes bypass the API request path via a presigned URL PUT, so large files do not consume API request budget.
+- name: Backoff Strategy
+  description: Clients should refresh on 401 and apply exponential backoff with jitter on 429 or 5xx responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

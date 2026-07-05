@@ -1,0 +1,166 @@
+aid: podbean
+url: https://raw.githubusercontent.com/api-evangelist/podbean/refs/heads/main/apis.yml
+name: Podbean
+kind: company
+description: >-
+  Podbean is a podcast hosting, distribution, and monetization platform for
+  creators, businesses, and networks. Its public REST API (base
+  https://api.podbean.com/v1) uses OAuth 2.0 and lets third-party apps and
+  integrations manage a user's podcast programmatically - read podcast profiles,
+  list and publish/update/delete episodes, authorize media file uploads, embed
+  players via oEmbed, and pull download, engagement, and advertising analytics
+  reports. Apps can act on behalf of a single podcast (Client Credentials) or
+  across many podcasts (Multiple Podcasts tokens) for agencies and networks.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Podcasting
+- Podcast Hosting
+- Media
+- Audio
+- Episodes
+- Analytics
+- Monetization
+created: '2026-07-05'
+modified: '2026-07-05'
+specificationVersion: '0.19'
+apis:
+- aid: podbean:podbean-podcasts-api
+  name: Podbean Podcasts API
+  tags:
+  - Podcasts
+  - Channels
+  - Account
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.podbean.com/podbean-api-docs/
+  baseURL: https://api.podbean.com/v1
+  properties:
+  - url: https://developers.podbean.com/podbean-api-docs/
+    type: Documentation
+  - url: https://developers.podbean.com/podbean-api-docs/#api-Podcast
+    type: APIReference
+  - url: openapi/podbean-openapi.yml
+    type: OpenAPI
+  - url: collections/podbean.postman_collection.json
+    type: PostmanCollection
+  - url: collections/podbean.opencollection.json
+    type: OpenCollection
+  description: >-
+    Read the authorized podcast's profile and settings, and - via the Multiple
+    Podcasts token flow - enumerate the podcasts an agency or network app is
+    authorized to manage. The entry point for building podcast-aware apps on top
+    of Podbean.
+- aid: podbean:podbean-episodes-api
+  name: Podbean Episodes API
+  tags:
+  - Episodes
+  - Publishing
+  - Content
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.podbean.com/podbean-api-docs/#api-Episode
+  baseURL: https://api.podbean.com/v1
+  properties:
+  - url: https://developers.podbean.com/podbean-api-docs/#api-Episode
+    type: APIReference
+  - url: https://help.podbean.com/support/solutions/articles/25000008051-publishing-a-new-podcast-episode-via-podbean-api
+    type: Documentation
+  - url: openapi/podbean-openapi.yml
+    type: OpenAPI
+  - url: collections/podbean.postman_collection.json
+    type: PostmanCollection
+  - url: collections/podbean.opencollection.json
+    type: OpenCollection
+  description: >-
+    List, read, publish, update, and delete podcast episodes. Publishing an
+    episode references a media_key (and optional logo_key) returned by the file
+    upload authorization flow, so the API can push new audio or video episodes
+    end to end.
+- aid: podbean:podbean-media-api
+  name: Podbean Media Files API
+  tags:
+  - Media
+  - File Upload
+  - Storage
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.podbean.com/podbean-api-docs/#api-File_upload
+  baseURL: https://api.podbean.com/v1
+  properties:
+  - url: https://developers.podbean.com/podbean-api-docs/#api-File_upload
+    type: APIReference
+  - url: openapi/podbean-openapi.yml
+    type: OpenAPI
+  - url: collections/podbean.postman_collection.json
+    type: PostmanCollection
+  - url: collections/podbean.opencollection.json
+    type: OpenCollection
+  description: >-
+    Authorize an upload to obtain a presigned URL and a file key, PUT the media
+    or image file directly to that URL, and list previously uploaded media
+    files. The file key is then passed to the Episodes API when publishing.
+- aid: podbean:podbean-analytics-api
+  name: Podbean Analytics API
+  tags:
+  - Analytics
+  - Reports
+  - Downloads
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.podbean.com/podbean-api-docs/#api-Analytic
+  baseURL: https://api.podbean.com/v1
+  properties:
+  - url: https://developers.podbean.com/podbean-api-docs/#api-Analytic
+    type: APIReference
+  - url: openapi/podbean-openapi.yml
+    type: OpenAPI
+  - url: collections/podbean.postman_collection.json
+    type: PostmanCollection
+  - url: collections/podbean.opencollection.json
+    type: OpenCollection
+  description: >-
+    Pull podcast performance data - download reports, listener engagement
+    reports, and advertising reports - for reporting dashboards and external
+    analytics tools such as Dataddo.
+- aid: podbean:podbean-oembed-api
+  name: Podbean oEmbed API
+  tags:
+  - oEmbed
+  - Embed
+  - Player
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developers.podbean.com/apidoc/widget
+  baseURL: https://api.podbean.com/v1
+  properties:
+  - url: https://developers.podbean.com/apidoc/widget
+    type: Documentation
+  - url: https://developers.podbean.com/podbean-api-docs/#api-oEmbed
+    type: APIReference
+  - url: openapi/podbean-openapi.yml
+    type: OpenAPI
+  - url: collections/podbean.postman_collection.json
+    type: PostmanCollection
+  - url: collections/podbean.opencollection.json
+    type: OpenCollection
+  description: >-
+    Standard oEmbed endpoint that returns embeddable player markup and metadata
+    for a Podbean podcast or episode URL, for use in websites, CMSs, and rich
+    link previews. No authentication required.
+common:
+- type: GitHubOrganization
+  url: https://github.com/podbean
+- type: LinkedIn
+  url: https://www.linkedin.com/company/podbean
+- type: Website
+  url: https://www.podbean.com
+- type: Documentation
+  url: https://developers.podbean.com/podbean-api-docs/
+- type: Plans
+  url: plans/podbean-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/podbean-rate-limits.yml
+- type: FinOps
+  url: finops/podbean-finops.yml
+- type: SignUp
+  url: https://developers.podbean.com/
+- url: https://www.podbean.com/podcast-news
+  type: Blog
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

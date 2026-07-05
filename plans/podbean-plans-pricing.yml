@@ -1,0 +1,194 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Podbean
+providerId: podbean
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Podcasting
+- Podcast Hosting
+- Media
+- Plans
+- Pricing
+description: >-
+  Podbean is priced as a podcast hosting SaaS with subscription tiers, not as a
+  metered API product. The public API is available to developers on the platform
+  and is not billed separately - API access rides on the account's hosting plan.
+  Podbean publishes a free Basic plan plus four paid tiers (Unlimited Audio,
+  Unlimited Plus, Network, Business), each available at a lower annual rate.
+  Prices below are the published monthly and annual-effective monthly rates in
+  USD as of the review date.
+notes: >-
+  Podbean also sells enterprise/agency solutions and add-ons (extra AI credits,
+  premium bandwidth, ads marketplace) that are not itemized here. Verify current
+  prices and limits on the Podbean pricing page during reconciliation.
+sources:
+- https://www.podbean.com/podcast-hosting-pricing
+- https://developers.podbean.com/
+- https://developers.podbean.com/podbean-api-docs/
+plans:
+- id: podbean-basic
+  name: Basic
+  type: free
+  description: >-
+    Free plan for getting started - roughly five hours of total audio storage
+    with a monthly bandwidth allowance. Suitable for evaluating the platform.
+  entries:
+  - label: Monthly Price
+    name: basic_price
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  elements:
+  - name: 5 Hours Storage
+  - name: Monthly Bandwidth Allowance
+  - name: Basic Stats
+  - name: Public API Access
+- id: podbean-unlimited-audio
+  name: Unlimited Audio
+  type: paid
+  description: >-
+    Audio-only creator plan with unlimited total storage and unmetered
+    bandwidth, advanced podcast stats, custom podcast site, ads marketplace,
+    one-click distribution, and monthly AI credits.
+  entries:
+  - label: Monthly Price
+    name: unlimited_audio_monthly
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $17 per month (billed monthly)
+    userMultiplied: false
+  - label: Annual Price (effective monthly)
+    name: unlimited_audio_annual
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $12 per month (billed annually)
+    userMultiplied: false
+  elements:
+  - name: Unlimited Storage
+  - name: Unmetered Bandwidth
+  - name: Advanced Stats
+  - name: Custom Podcast Site
+  - name: Ads Marketplace
+  - name: Public API Access
+- id: podbean-unlimited-plus
+  name: Unlimited Plus
+  type: paid
+  description: >-
+    Adds video podcast hosting and deeper customization on top of Unlimited
+    Audio, for creators working with both audio and video, with a larger monthly
+    upload allowance and more AI credits.
+  entries:
+  - label: Monthly Price
+    name: unlimited_plus_monthly
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $39 per month (billed monthly)
+    userMultiplied: false
+  - label: Annual Price (effective monthly)
+    name: unlimited_plus_annual
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $29 per month (billed annually)
+    userMultiplied: false
+  elements:
+  - name: Audio and Video Hosting
+  - name: Unlimited Storage
+  - name: Advanced Analytics
+  - name: Ads Marketplace
+  - name: Public API Access
+- id: podbean-network
+  name: Network
+  type: paid
+  description: >-
+    For multiple public shows and podcast networks - network-level analytics,
+    branded network site, all monetization features, team roles, and a large
+    monthly upload allowance.
+  entries:
+  - label: Monthly Price
+    name: network_monthly
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $99 per month (billed monthly)
+    userMultiplied: false
+  - label: Annual Price (effective monthly)
+    name: network_annual
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $79 per month (billed annually)
+    userMultiplied: false
+  elements:
+  - name: Unlimited Audio and Video Shows
+  - name: Network-Level Stats
+  - name: Branded Network Site
+  - name: Team Members
+  - name: Multiple Podcasts API Access
+- id: podbean-business
+  name: Business
+  type: paid
+  description: >-
+    For private and public business podcasts - business-level stats, all
+    monetization, unlimited team members, SSO login, SOC 2 protection, and
+    private member podcasts.
+  entries:
+  - label: Monthly Price
+    name: business_monthly
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $129 per month (billed monthly)
+    userMultiplied: false
+  - label: Annual Price (effective monthly)
+    name: business_annual
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $99 per month (billed annually)
+    userMultiplied: false
+  elements:
+  - name: Private and Public Podcasts
+  - name: Business-Level Stats
+  - name: SSO Login
+  - name: SOC 2 Protection
+  - name: Unlimited Team Members
+  - name: Public API Access
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
