@@ -1,0 +1,24 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/podbean-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+schemes:
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.podbean.com/v1/dialog/oauth
+    tokenUrl: https://api.podbean.com/v1/oauth/token
+    scopes: 3
+  - flow: clientCredentials
+    tokenUrl: https://api.podbean.com/v1/oauth/token
+    scopes: 2
+  description: OAuth 2.0. Register an app at developers.podbean.com to obtain a Client ID and
+    Secret.
+  sources:
+  - openapi/podbean-openapi.yml

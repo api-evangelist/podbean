@@ -143,6 +143,8 @@ apis:
     for a Podbean podcast or episode URL, for use in websites, CMSs, and rich
     link previews. No authentication required.
 common:
+- type: DomainSecurity
+  url: security/podbean-domain-security.yml
 - type: Authentication
   url: authentication/podbean-authentication.yml
 - type: OAuthScopes
