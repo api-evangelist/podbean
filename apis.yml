@@ -143,6 +143,10 @@ apis:
     for a Podbean podcast or episode URL, for use in websites, CMSs, and rich
     link previews. No authentication required.
 common:
+- type: Authentication
+  url: authentication/podbean-authentication.yml
+- type: OAuthScopes
+  url: scopes/podbean-scopes.yml
 - type: GitHubOrganization
   url: https://github.com/podbean
 - type: LinkedIn
