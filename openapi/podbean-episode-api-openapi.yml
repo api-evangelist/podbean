@@ -1,0 +1,310 @@
+openapi: 3.0.3
+info:
+  title: Podbean Analytics Episode API
+  description: The Podbean API lets third-party apps and integrations manage a user's podcast on the Podbean hosting, distribution, and monetization platform. It is a REST API over HTTPS authenticated with OAuth 2.0. Apps register at developers.podbean.com to obtain a Client ID and Secret, then acquire an access token via the Authorization Code flow (to act on behalf of another user's podcast), the Client Credentials flow (to manage their own podcast), or the Multiple Podcasts token flow (for agencies and networks managing many podcasts). Documented resources cover Podcasts, Episodes, media file upload authorization, oEmbed embedding, and Analytics reports. Write operations use POST with form-encoded bodies. This description is grounded in Podbean's public developer documentation; some request/response schemas are represented generically and should be reconciled against the live docs.
+  version: '1.0'
+  contact:
+    name: Podbean Developer Platform
+    url: https://developers.podbean.com
+  license:
+    name: Proprietary
+    url: https://www.podbean.com/terms
+servers:
+- url: https://api.podbean.com/v1
+  description: Podbean API v1
+security:
+- oauth2: []
+tags:
+- name: Episode
+  description: List, read, publish, update, and delete podcast episodes.
+paths:
+  /episodes:
+    get:
+      operationId: listEpisodes
+      tags:
+      - Episode
+      summary: List episodes
+      description: Lists episodes for the authorized podcast, with paging via offset and limit.
+      parameters:
+      - name: access_token
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 20
+          maximum: 100
+      responses:
+        '200':
+          description: A list of episodes.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  episodes:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Episode'
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+                  count:
+                    type: integer
+                  has_more:
+                    type: boolean
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: publishEpisode
+      tags:
+      - Episode
+      summary: Publish a new episode
+      description: Publishes a new episode. Reference a media_key (and optional logo_key) obtained from /files/uploadAuthorize.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EpisodeInput'
+      responses:
+        '200':
+          description: The published episode.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  episode:
+                    $ref: '#/components/schemas/Episode'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /episodes/{id}:
+    get:
+      operationId: getEpisode
+      tags:
+      - Episode
+      summary: Read an episode
+      description: Returns a single episode by its ID.
+      parameters:
+      - $ref: '#/components/parameters/EpisodeId'
+      responses:
+        '200':
+          description: The episode.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  episode:
+                    $ref: '#/components/schemas/Episode'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateEpisode
+      tags:
+      - Episode
+      summary: Update an episode
+      description: Updates an existing episode by ID. Fields are submitted as a form-encoded body.
+      parameters:
+      - $ref: '#/components/parameters/EpisodeId'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EpisodeInput'
+      responses:
+        '200':
+          description: The updated episode.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  episode:
+                    $ref: '#/components/schemas/Episode'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /episodes/{id}/delete:
+    post:
+      operationId: deleteEpisode
+      tags:
+      - Episode
+      summary: Delete an episode
+      description: Deletes an episode by ID. Podbean models deletion as a POST action.
+      parameters:
+      - $ref: '#/components/parameters/EpisodeId'
+      requestBody:
+        required: false
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+      responses:
+        '200':
+          description: Deletion result.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    EpisodeInput:
+      type: object
+      properties:
+        access_token:
+          type: string
+        title:
+          type: string
+        content:
+          type: string
+        status:
+          type: string
+          enum:
+          - publish
+          - draft
+          - future
+        type:
+          type: string
+          enum:
+          - public
+          - premium
+          - private
+        media_key:
+          type: string
+          description: File key returned by /files/uploadAuthorize for the audio/video media.
+        logo_key:
+          type: string
+          description: Optional file key for the episode cover image.
+        season_number:
+          type: integer
+        episode_number:
+          type: integer
+        apple_episode_type:
+          type: string
+          enum:
+          - full
+          - trailer
+          - bonus
+      required:
+      - title
+    Episode:
+      type: object
+      properties:
+        id:
+          type: string
+        podcast_id:
+          type: string
+        title:
+          type: string
+        content:
+          type: string
+        logo:
+          type: string
+          format: uri
+        media_url:
+          type: string
+          format: uri
+        player_url:
+          type: string
+          format: uri
+        permalink_url:
+          type: string
+          format: uri
+        publish_time:
+          type: integer
+        duration:
+          type: integer
+        status:
+          type: string
+          enum:
+          - publish
+          - draft
+          - future
+        type:
+          type: string
+          enum:
+          - public
+          - premium
+          - private
+        object:
+          type: string
+          example: Episode
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+  parameters:
+    EpisodeId:
+      name: id
+      in: path
+      required: true
+      description: The episode ID.
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: The request was malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0. Register an app at developers.podbean.com to obtain a Client ID and Secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.podbean.com/v1/dialog/oauth
+          tokenUrl: https://api.podbean.com/v1/oauth/token
+          refreshUrl: https://api.podbean.com/v1/oauth/token
+          scopes:
+            episode_publish: Publish and manage episodes.
+            episode_read: Read episodes.
+            podcast_read: Read podcast profile and settings.
+        clientCredentials:
+          tokenUrl: https://api.podbean.com/v1/oauth/token
+          scopes:
+            episode_publish: Publish and manage episodes.
+            podcast_read: Read podcast profile and settings.

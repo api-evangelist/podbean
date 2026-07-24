@@ -1,0 +1,215 @@
+openapi: 3.0.3
+info:
+  title: Podbean Analytics Authentication API
+  description: The Podbean API lets third-party apps and integrations manage a user's podcast on the Podbean hosting, distribution, and monetization platform. It is a REST API over HTTPS authenticated with OAuth 2.0. Apps register at developers.podbean.com to obtain a Client ID and Secret, then acquire an access token via the Authorization Code flow (to act on behalf of another user's podcast), the Client Credentials flow (to manage their own podcast), or the Multiple Podcasts token flow (for agencies and networks managing many podcasts). Documented resources cover Podcasts, Episodes, media file upload authorization, oEmbed embedding, and Analytics reports. Write operations use POST with form-encoded bodies. This description is grounded in Podbean's public developer documentation; some request/response schemas are represented generically and should be reconciled against the live docs.
+  version: '1.0'
+  contact:
+    name: Podbean Developer Platform
+    url: https://developers.podbean.com
+  license:
+    name: Proprietary
+    url: https://www.podbean.com/terms
+servers:
+- url: https://api.podbean.com/v1
+  description: Podbean API v1
+security:
+- oauth2: []
+tags:
+- name: Authentication
+  description: OAuth 2.0 login dialog, token exchange, inspection, and multi-podcast tokens.
+paths:
+  /dialog/oauth:
+    get:
+      operationId: loginDialog
+      tags:
+      - Authentication
+      summary: OAuth 2.0 login dialog
+      description: Redirect the user here to authorize a third-party app. On approval, Podbean redirects back to the app's redirect_uri with an authorization code to exchange at /oauth/token.
+      security: []
+      parameters:
+      - name: client_id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: redirect_uri
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: response_type
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - code
+      - name: scope
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: state
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '302':
+          description: Redirect back to redirect_uri with an authorization code.
+  /oauth/token:
+    post:
+      operationId: getAccessToken
+      tags:
+      - Authentication
+      summary: Exchange for an access token
+      description: Exchange an authorization code, client credentials, or a refresh token for an OAuth 2.0 access token. Supports grant_type values authorization_code, client_credentials, and refresh_token.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - authorization_code
+                  - client_credentials
+                  - refresh_token
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+                code:
+                  type: string
+                redirect_uri:
+                  type: string
+                refresh_token:
+                  type: string
+              required:
+              - grant_type
+      responses:
+        '200':
+          description: An access token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /oauth/debugToken:
+    post:
+      operationId: debugToken
+      tags:
+      - Authentication
+      summary: Inspect an access token
+      description: Returns metadata about an access token - the podcast it is bound to, scopes, and expiry.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: string
+              required:
+              - access_token
+      responses:
+        '200':
+          description: Token metadata.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /oauth/multiplePodcastsToken:
+    post:
+      operationId: getMultiplePodcastsToken
+      tags:
+      - Authentication
+      summary: Get Multiple Podcasts tokens
+      description: For agencies and networks - exchange client credentials for per-podcast access tokens covering all podcasts the app is authorized to manage.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - client_credentials
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+              required:
+              - grant_type
+              - client_id
+              - client_secret
+      responses:
+        '200':
+          description: Per-podcast access tokens.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  podcasts:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+components:
+  responses:
+    BadRequest:
+      description: The request was malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    AccessToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+          example: bearer
+        expires_in:
+          type: integer
+        refresh_token:
+          type: string
+        scope:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0. Register an app at developers.podbean.com to obtain a Client ID and Secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.podbean.com/v1/dialog/oauth
+          tokenUrl: https://api.podbean.com/v1/oauth/token
+          refreshUrl: https://api.podbean.com/v1/oauth/token
+          scopes:
+            episode_publish: Publish and manage episodes.
+            episode_read: Read episodes.
+            podcast_read: Read podcast profile and settings.
+        clientCredentials:
+          tokenUrl: https://api.podbean.com/v1/oauth/token
+          scopes:
+            episode_publish: Publish and manage episodes.
+            podcast_read: Read podcast profile and settings.

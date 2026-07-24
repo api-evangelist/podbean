@@ -1,0 +1,105 @@
+openapi: 3.0.3
+info:
+  title: Podbean Analytics oEmbed API
+  description: The Podbean API lets third-party apps and integrations manage a user's podcast on the Podbean hosting, distribution, and monetization platform. It is a REST API over HTTPS authenticated with OAuth 2.0. Apps register at developers.podbean.com to obtain a Client ID and Secret, then acquire an access token via the Authorization Code flow (to act on behalf of another user's podcast), the Client Credentials flow (to manage their own podcast), or the Multiple Podcasts token flow (for agencies and networks managing many podcasts). Documented resources cover Podcasts, Episodes, media file upload authorization, oEmbed embedding, and Analytics reports. Write operations use POST with form-encoded bodies. This description is grounded in Podbean's public developer documentation; some request/response schemas are represented generically and should be reconciled against the live docs.
+  version: '1.0'
+  contact:
+    name: Podbean Developer Platform
+    url: https://developers.podbean.com
+  license:
+    name: Proprietary
+    url: https://www.podbean.com/terms
+servers:
+- url: https://api.podbean.com/v1
+  description: Podbean API v1
+security:
+- oauth2: []
+tags:
+- name: oEmbed
+  description: Embeddable player markup and metadata for a podcast or episode URL.
+paths:
+  /oembed:
+    get:
+      operationId: oembed
+      tags:
+      - oEmbed
+      summary: oEmbed
+      description: Returns embeddable player markup and metadata for a Podbean podcast or episode URL, following the oEmbed spec. No authentication required.
+      security: []
+      parameters:
+      - name: url
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uri
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
+      - name: maxwidth
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: maxheight
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: An oEmbed response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OEmbed'
+components:
+  schemas:
+    OEmbed:
+      type: object
+      properties:
+        type:
+          type: string
+        version:
+          type: string
+        title:
+          type: string
+        provider_name:
+          type: string
+          example: Podbean
+        provider_url:
+          type: string
+          format: uri
+        html:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+        thumbnail_url:
+          type: string
+          format: uri
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0. Register an app at developers.podbean.com to obtain a Client ID and Secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.podbean.com/v1/dialog/oauth
+          tokenUrl: https://api.podbean.com/v1/oauth/token
+          refreshUrl: https://api.podbean.com/v1/oauth/token
+          scopes:
+            episode_publish: Publish and manage episodes.
+            episode_read: Read episodes.
+            podcast_read: Read podcast profile and settings.
+        clientCredentials:
+          tokenUrl: https://api.podbean.com/v1/oauth/token
+          scopes:
+            episode_publish: Publish and manage episodes.
+            podcast_read: Read podcast profile and settings.

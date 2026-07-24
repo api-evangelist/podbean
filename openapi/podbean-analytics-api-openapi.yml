@@ -1,0 +1,154 @@
+openapi: 3.0.3
+info:
+  title: Podbean Analytics API
+  description: The Podbean API lets third-party apps and integrations manage a user's podcast on the Podbean hosting, distribution, and monetization platform. It is a REST API over HTTPS authenticated with OAuth 2.0. Apps register at developers.podbean.com to obtain a Client ID and Secret, then acquire an access token via the Authorization Code flow (to act on behalf of another user's podcast), the Client Credentials flow (to manage their own podcast), or the Multiple Podcasts token flow (for agencies and networks managing many podcasts). Documented resources cover Podcasts, Episodes, media file upload authorization, oEmbed embedding, and Analytics reports. Write operations use POST with form-encoded bodies. This description is grounded in Podbean's public developer documentation; some request/response schemas are represented generically and should be reconciled against the live docs.
+  version: '1.0'
+  contact:
+    name: Podbean Developer Platform
+    url: https://developers.podbean.com
+  license:
+    name: Proprietary
+    url: https://www.podbean.com/terms
+servers:
+- url: https://api.podbean.com/v1
+  description: Podbean API v1
+security:
+- oauth2: []
+tags:
+- name: Analytics
+  description: Download, engagement, and advertising reports.
+paths:
+  /analytics/podcastReports:
+    get:
+      operationId: getPodcastDownloadReports
+      tags:
+      - Analytics
+      summary: Podcast download reports
+      description: Returns download/listen counts for the authorized podcast over a date range.
+      parameters:
+      - $ref: '#/components/parameters/AccessTokenQuery'
+      - name: start
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: end
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Download report data.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /analytics/podcastEngagementReports:
+    get:
+      operationId: getPodcastEngagementReports
+      tags:
+      - Analytics
+      summary: Podcast engagement reports
+      description: Returns listener engagement data for the authorized podcast over a date range.
+      parameters:
+      - $ref: '#/components/parameters/AccessTokenQuery'
+      - name: start
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: end
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Engagement report data.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /analytics/advertiseReports:
+    get:
+      operationId: getAdvertiseReports
+      tags:
+      - Analytics
+      summary: Advertising reports
+      description: Returns advertising/monetization report data for the authorized podcast.
+      parameters:
+      - $ref: '#/components/parameters/AccessTokenQuery'
+      - name: start
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      - name: end
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Advertising report data.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    AccessTokenQuery:
+      name: access_token
+      in: query
+      required: false
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0. Register an app at developers.podbean.com to obtain a Client ID and Secret.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.podbean.com/v1/dialog/oauth
+          tokenUrl: https://api.podbean.com/v1/oauth/token
+          refreshUrl: https://api.podbean.com/v1/oauth/token
+          scopes:
+            episode_publish: Publish and manage episodes.
+            episode_read: Read episodes.
+            podcast_read: Read podcast profile and settings.
+        clientCredentials:
+          tokenUrl: https://api.podbean.com/v1/oauth/token
+          scopes:
+            episode_publish: Publish and manage episodes.
+            podcast_read: Read podcast profile and settings.
