@@ -1,0 +1,24 @@
+{
+  "provider": "podbean",
+  "sources": [
+    "podbean-analytics-api-openapi.yml",
+    "podbean-authentication-api-openapi.yml",
+    "podbean-episode-api-openapi.yml",
+    "podbean-file-upload-api-openapi.yml",
+    "podbean-oembed-api-openapi.yml",
+    "podbean-podcast-api-openapi.yml"
+  ],
+  "outputs": [
+    "podbean-analytics-api-openapi.yml",
+    "podbean-authentication-api-openapi.yml",
+    "podbean-episode-api-openapi.yml",
+    "podbean-file-upload-api-openapi.yml",
+    "podbean-oembed-api-openapi.yml",
+    "podbean-podcast-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
