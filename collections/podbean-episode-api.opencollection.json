@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Podbean Analytics Episode API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.podbean.com/v1/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Episode",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List episodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.podbean.com/v1/episodes",
+            "params": [
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists episodes for the authorized podcast, with paging via offset and limit."
+        },
+        {
+          "info": {
+            "name": "Publish a new episode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.podbean.com/v1/episodes",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Publishes a new episode. Reference a media_key (and optional logo_key) obtained from /files/uploadAuthorize."
+        },
+        {
+          "info": {
+            "name": "Read an episode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.podbean.com/v1/episodes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The episode ID."
+              }
+            ]
+          },
+          "docs": "Returns a single episode by its ID."
+        },
+        {
+          "info": {
+            "name": "Update an episode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.podbean.com/v1/episodes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The episode ID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Updates an existing episode by ID. Fields are submitted as a form-encoded body."
+        },
+        {
+          "info": {
+            "name": "Delete an episode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.podbean.com/v1/episodes/:id/delete",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The episode ID."
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "access_token",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Deletes an episode by ID. Podbean models deletion as a POST action."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

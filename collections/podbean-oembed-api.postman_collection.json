@@ -1,0 +1,174 @@
+{
+  "item": [
+    {
+      "id": "b26118c4-5240-464e-a6ad-a4d1a1fe3b3a",
+      "name": "oEmbed",
+      "description": {
+        "content": "Embeddable player markup and metadata for a podcast or episode URL.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dc3cb813-889b-4f64-989f-f8c8102b1f2b",
+          "name": "oEmbed",
+          "request": {
+            "name": "oEmbed",
+            "description": {
+              "content": "Returns embeddable player markup and metadata for a Podbean podcast or episode URL, following the oEmbed spec. No authentication required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oembed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxwidth",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxheight",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f74b8e12-20fc-4fd6-b6c0-b9e0befb7af7",
+              "name": "An oEmbed response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oembed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "json"
+                    },
+                    {
+                      "key": "maxwidth",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "maxheight",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"version\": \"string\",\n  \"title\": \"string\",\n  \"provider_name\": \"Podbean\",\n  \"provider_url\": \"https://NKteivPeRGfsfyqZuNaXcUbGjR.icpkhcr+K88ADAtaCcbmcxtA,8wIotueRg8I4tBCROS,jbWz,aKqHu22J\",\n  \"html\": \"string\",\n  \"width\": 2080,\n  \"height\": 8714,\n  \"thumbnail_url\": \"https://IwnQOTR.immbhj2ENVPnl3bAnY-BHYNC4iQr0JsokglXjucyh-EE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.podbean.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "episode_publish episode_read podcast_read"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://api.podbean.com/v1/oauth/token"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.podbean.com/v1/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://api.podbean.com/v1/dialog/oauth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "35f83288-a1dd-4507-8109-d326aac9ce59",
+    "name": "Podbean Analytics oEmbed API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Podbean API lets third-party apps and integrations manage a user's podcast on the Podbean hosting, distribution, and monetization platform. It is a REST API over HTTPS authenticated with OAuth 2.0. Apps register at developers.podbean.com to obtain a Client ID and Secret, then acquire an access token via the Authorization Code flow (to act on behalf of another user's podcast), the Client Credentials flow (to manage their own podcast), or the Multiple Podcasts token flow (for agencies and networks managing many podcasts). Documented resources cover Podcasts, Episodes, media file upload authorization, oEmbed embedding, and Analytics reports. Write operations use POST with form-encoded bodies. This description is grounded in Podbean's public developer documentation; some request/response schemas are represented generically and should be reconciled against the live docs.\n\nContact Support:\n Name: Podbean Developer Platform",
+      "type": "text/plain"
+    }
+  }
+}

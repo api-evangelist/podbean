@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Podbean Analytics Authentication API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.podbean.com/v1/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OAuth 2.0 login dialog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.podbean.com/v1/dialog/oauth",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Redirect the user here to authorize a third-party app. On approval, Podbean redirects back to the app's redirect_uri with an authorization code to exchange at /oauth/token."
+        },
+        {
+          "info": {
+            "name": "Exchange for an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.podbean.com/v1/oauth/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                },
+                {
+                  "name": "code",
+                  "value": ""
+                },
+                {
+                  "name": "redirect_uri",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Exchange an authorization code, client credentials, or a refresh token for an OAuth 2.0 access token. Supports grant_type values authorization_code, client_credentials, and refresh_token."
+        },
+        {
+          "info": {
+            "name": "Inspect an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.podbean.com/v1/oauth/debugToken",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "access_token",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Returns metadata about an access token - the podcast it is bound to, scopes, and expiry."
+        },
+        {
+          "info": {
+            "name": "Get Multiple Podcasts tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.podbean.com/v1/oauth/multiplePodcastsToken",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "For agencies and networks - exchange client credentials for per-podcast access tokens covering all podcasts the app is authorized to manage."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

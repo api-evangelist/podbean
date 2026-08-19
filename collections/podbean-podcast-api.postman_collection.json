@@ -1,0 +1,178 @@
+{
+  "item": [
+    {
+      "id": "0512b53c-cd57-46f1-96ae-7a2739861962",
+      "name": "Podcast",
+      "description": {
+        "content": "Read the authorized podcast profile and settings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5e8625d-20a3-43d2-9c46-77628f2ba9df",
+          "name": "Get the authorized podcast",
+          "request": {
+            "name": "Get the authorized podcast",
+            "description": {
+              "content": "Returns the profile and settings of the podcast the access token is bound to.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "podcast"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed71de32-5f84-4a11-ba52-e0ef44ab29c0",
+              "name": "The podcast.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "podcast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"desc\": \"string\",\n  \"logo\": \"http://RnhrknaaesrrIzSNkprgJ.qpxuyBT0Mk4,,Esi.Pj\",\n  \"website\": \"http://oUEewAIjH.xqeg.PV4GvWsZTBu3TKVxlx+CL6wx0dS-jCTnH.hyqTsikX.TDQ5mPtd+fs3vNOKqp-oV\",\n  \"category_name\": \"string\",\n  \"allow_episode_type\": [\n    \"string\",\n    \"string\"\n  ],\n  \"object\": \"Podcast\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0fbd9df-af61-405d-868e-e798fa53a1e1",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "podcast"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.podbean.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "episode_publish episode_read podcast_read"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://api.podbean.com/v1/oauth/token"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.podbean.com/v1/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://api.podbean.com/v1/dialog/oauth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "931490aa-6217-4ee3-8ceb-05e056632151",
+    "name": "Podbean Analytics Podcast API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Podbean API lets third-party apps and integrations manage a user's podcast on the Podbean hosting, distribution, and monetization platform. It is a REST API over HTTPS authenticated with OAuth 2.0. Apps register at developers.podbean.com to obtain a Client ID and Secret, then acquire an access token via the Authorization Code flow (to act on behalf of another user's podcast), the Client Credentials flow (to manage their own podcast), or the Multiple Podcasts token flow (for agencies and networks managing many podcasts). Documented resources cover Podcasts, Episodes, media file upload authorization, oEmbed embedding, and Analytics reports. Write operations use POST with form-encoded bodies. This description is grounded in Podbean's public developer documentation; some request/response schemas are represented generically and should be reconciled against the live docs.\n\nContact Support:\n Name: Podbean Developer Platform",
+      "type": "text/plain"
+    }
+  }
+}

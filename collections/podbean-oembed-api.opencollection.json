@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Podbean Analytics oEmbed API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.podbean.com/v1/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "oEmbed",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "oEmbed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.podbean.com/v1/oembed",
+            "params": [
+              {
+                "name": "url",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "maxwidth",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "maxheight",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns embeddable player markup and metadata for a Podbean podcast or episode URL, following the oEmbed spec. No authentication required."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

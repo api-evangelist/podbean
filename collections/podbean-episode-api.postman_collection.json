@@ -1,0 +1,1549 @@
+{
+  "item": [
+    {
+      "id": "6c512ee1-e4eb-471b-8ea6-62b2063ffe27",
+      "name": "Episode",
+      "description": {
+        "content": "List, read, publish, update, and delete podcast episodes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "56e61857-938a-4cae-84ae-eb1141849716",
+          "name": "List episodes",
+          "request": {
+            "name": "List episodes",
+            "description": {
+              "content": "Lists episodes for the authorized podcast, with paging via offset and limit.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "episodes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e821d7ff-11ed-4d61-8393-5033e3915660",
+              "name": "A list of episodes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "episodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"episodes\": [\n    {\n      \"id\": \"string\",\n      \"podcast_id\": \"string\",\n      \"title\": \"string\",\n      \"content\": \"string\",\n      \"logo\": \"http://uAPjOefTKLFilqijQlNJERvoPQOmYCt.jshgrhCJfYBkAvUCf2Gl,af,dl,e0obsYK1+qvaSm\",\n      \"media_url\": \"https://eCrHmMcquiGaxJZRUZmktQooL.bfjMNhXtFg0tu5lfCrbQZjS55ZdA3PjoSwaPLuLqlml5iz8cBp3DeXDdTD7nEofEMuq\",\n      \"player_url\": \"http://RmXFKieYzVGTpWmRZW.uesmC7rqNCTJudTGoraL1CZzahCzG0tiqgcO5QuMKjtkI0+MJHlck2rNm9ZKN4qppzAmdz\",\n      \"permalink_url\": \"http://mXEEvEbQTuuqhbjkTjXMYVXSfYVcLYco.ugqLqcQY8Y1y8u\",\n      \"publish_time\": 2599,\n      \"duration\": 6897,\n      \"status\": \"publish\",\n      \"type\": \"private\",\n      \"object\": \"Episode\"\n    },\n    {\n      \"id\": \"string\",\n      \"podcast_id\": \"string\",\n      \"title\": \"string\",\n      \"content\": \"string\",\n      \"logo\": \"https://PVZxNANxdvCfOqrPYHfz.gddGsDroqgBRhjiAV8fLL1kptWvXmHw4r\",\n      \"media_url\": \"http://VWvYOAXMAEjBvfQYjNZctaIwysXkQbIp.hqoogFW0Ww-KWOQ2prAk-VYi\",\n      \"player_url\": \"https://meYXGqPOKCQg.bcywMFfA4xr+-AZJxevvDtqC\",\n      \"permalink_url\": \"http://M.ybndc25MGM8OVxL,GdOsfHHP\",\n      \"publish_time\": 7509,\n      \"duration\": 6081,\n      \"status\": \"publish\",\n      \"type\": \"private\",\n      \"object\": \"Episode\"\n    }\n  ],\n  \"offset\": 6305,\n  \"limit\": 4715,\n  \"count\": 4576,\n  \"has_more\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e19c9743-9316-41b8-933c-c819d11ea704",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "episodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d12942c-34b1-49cc-8a18-ce69d82cacef",
+          "name": "Publish a new episode",
+          "request": {
+            "name": "Publish a new episode",
+            "description": {
+              "content": "Publishes a new episode. Reference a media_key (and optional logo_key) obtained from /files/uploadAuthorize.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "episodes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "content",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "media_key",
+                  "value": "<string>",
+                  "description": "File key returned by /files/uploadAuthorize for the audio/video media."
+                },
+                {
+                  "disabled": false,
+                  "key": "logo_key",
+                  "value": "<string>",
+                  "description": "Optional file key for the episode cover image."
+                },
+                {
+                  "disabled": false,
+                  "key": "season_number",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "episode_number",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "apple_episode_type",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f698006d-5b54-49c0-9b76-1a8442995982",
+              "name": "The published episode.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "episodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "content",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File key returned by /files/uploadAuthorize for the audio/video media.",
+                        "type": "text/plain"
+                      },
+                      "key": "media_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional file key for the episode cover image.",
+                        "type": "text/plain"
+                      },
+                      "key": "logo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "season_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "episode_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "apple_episode_type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"episode\": {\n    \"id\": \"string\",\n    \"podcast_id\": \"string\",\n    \"title\": \"string\",\n    \"content\": \"string\",\n    \"logo\": \"https://qotwE.cmgMjWY,CXKsSP,3klWxwS,BHz\",\n    \"media_url\": \"http://CgqmqsgA.rxysEYQwZ8BKzN\",\n    \"player_url\": \"http://wfCMObS.kzlgp16rXu3iM31OpTRdEfSYvxxm\",\n    \"permalink_url\": \"http://fwa.pwMVAA,nqOvi7bgaVlVCr8A1-yzD2Yl,RZMadaDLR\",\n    \"publish_time\": 5975,\n    \"duration\": 8275,\n    \"status\": \"future\",\n    \"type\": \"public\",\n    \"object\": \"Episode\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e55b009-c462-41b7-be94-99a2b702f57c",
+              "name": "The request was malformed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "episodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "content",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File key returned by /files/uploadAuthorize for the audio/video media.",
+                        "type": "text/plain"
+                      },
+                      "key": "media_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional file key for the episode cover image.",
+                        "type": "text/plain"
+                      },
+                      "key": "logo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "season_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "episode_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "apple_episode_type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33ea37da-b5d8-4b2c-9196-6d7391e94a5c",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "episodes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "content",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File key returned by /files/uploadAuthorize for the audio/video media.",
+                        "type": "text/plain"
+                      },
+                      "key": "media_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional file key for the episode cover image.",
+                        "type": "text/plain"
+                      },
+                      "key": "logo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "season_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "episode_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "apple_episode_type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba6a391d-f737-4d45-9a06-98f22f3411ae",
+          "name": "Read an episode",
+          "request": {
+            "name": "Read an episode",
+            "description": {
+              "content": "Returns a single episode by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "episodes",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The episode ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "715de7ed-6a9e-4852-ac20-bfe47fdfdf49",
+              "name": "The episode.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "episodes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The episode ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"episode\": {\n    \"id\": \"string\",\n    \"podcast_id\": \"string\",\n    \"title\": \"string\",\n    \"content\": \"string\",\n    \"logo\": \"https://qotwE.cmgMjWY,CXKsSP,3klWxwS,BHz\",\n    \"media_url\": \"http://CgqmqsgA.rxysEYQwZ8BKzN\",\n    \"player_url\": \"http://wfCMObS.kzlgp16rXu3iM31OpTRdEfSYvxxm\",\n    \"permalink_url\": \"http://fwa.pwMVAA,nqOvi7bgaVlVCr8A1-yzD2Yl,RZMadaDLR\",\n    \"publish_time\": 5975,\n    \"duration\": 8275,\n    \"status\": \"future\",\n    \"type\": \"public\",\n    \"object\": \"Episode\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15b5fa7d-7f70-4961-ac6e-1894f2078926",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "episodes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The episode ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a280b9a-341e-4a24-bc79-921a767273a3",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "episodes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The episode ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "feaaee50-f0ff-4e4e-87f8-8b087d84bd84",
+          "name": "Update an episode",
+          "request": {
+            "name": "Update an episode",
+            "description": {
+              "content": "Updates an existing episode by ID. Fields are submitted as a form-encoded body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "episodes",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The episode ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "content",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "media_key",
+                  "value": "<string>",
+                  "description": "File key returned by /files/uploadAuthorize for the audio/video media."
+                },
+                {
+                  "disabled": false,
+                  "key": "logo_key",
+                  "value": "<string>",
+                  "description": "Optional file key for the episode cover image."
+                },
+                {
+                  "disabled": false,
+                  "key": "season_number",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "episode_number",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "apple_episode_type",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "60d58eb4-f904-4fdb-a036-bf9694b7dd82",
+              "name": "The updated episode.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "episodes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The episode ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "content",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File key returned by /files/uploadAuthorize for the audio/video media.",
+                        "type": "text/plain"
+                      },
+                      "key": "media_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional file key for the episode cover image.",
+                        "type": "text/plain"
+                      },
+                      "key": "logo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "season_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "episode_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "apple_episode_type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"episode\": {\n    \"id\": \"string\",\n    \"podcast_id\": \"string\",\n    \"title\": \"string\",\n    \"content\": \"string\",\n    \"logo\": \"https://qotwE.cmgMjWY,CXKsSP,3klWxwS,BHz\",\n    \"media_url\": \"http://CgqmqsgA.rxysEYQwZ8BKzN\",\n    \"player_url\": \"http://wfCMObS.kzlgp16rXu3iM31OpTRdEfSYvxxm\",\n    \"permalink_url\": \"http://fwa.pwMVAA,nqOvi7bgaVlVCr8A1-yzD2Yl,RZMadaDLR\",\n    \"publish_time\": 5975,\n    \"duration\": 8275,\n    \"status\": \"future\",\n    \"type\": \"public\",\n    \"object\": \"Episode\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bba1190-a354-4965-8892-391731257e22",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "episodes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The episode ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "content",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File key returned by /files/uploadAuthorize for the audio/video media.",
+                        "type": "text/plain"
+                      },
+                      "key": "media_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional file key for the episode cover image.",
+                        "type": "text/plain"
+                      },
+                      "key": "logo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "season_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "episode_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "apple_episode_type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04b1d48f-c28a-43b7-a091-842177395468",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "episodes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The episode ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "access_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "content",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File key returned by /files/uploadAuthorize for the audio/video media.",
+                        "type": "text/plain"
+                      },
+                      "key": "media_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional file key for the episode cover image.",
+                        "type": "text/plain"
+                      },
+                      "key": "logo_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "season_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "episode_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "apple_episode_type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "712b28b0-fb34-4c2d-a16c-5390f83a108a",
+          "name": "Delete an episode",
+          "request": {
+            "name": "Delete an episode",
+            "description": {
+              "content": "Deletes an episode by ID. Podbean models deletion as a POST action.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "episodes",
+                ":id",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The episode ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8f9fcc5f-9173-4636-9894-0f5bce7961a3",
+              "name": "Deletion result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "episodes",
+                    ":id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The episode ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "access_token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": false,\n  \"key_1\": 9244.330147270039\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11c4ae54-6593-4a4c-9746-fd83a7b4297a",
+              "name": "Missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "episodes",
+                    ":id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The episode ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "access_token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3491d0e9-f084-4bfe-8102-a992a355afa6",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "episodes",
+                    ":id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The episode ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "access_token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.podbean.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "episode_publish episode_read podcast_read"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://api.podbean.com/v1/oauth/token"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.podbean.com/v1/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://api.podbean.com/v1/dialog/oauth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "899eefff-940b-44a1-a42f-2c0ddcda328b",
+    "name": "Podbean Analytics Episode API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Podbean API lets third-party apps and integrations manage a user's podcast on the Podbean hosting, distribution, and monetization platform. It is a REST API over HTTPS authenticated with OAuth 2.0. Apps register at developers.podbean.com to obtain a Client ID and Secret, then acquire an access token via the Authorization Code flow (to act on behalf of another user's podcast), the Client Credentials flow (to manage their own podcast), or the Multiple Podcasts token flow (for agencies and networks managing many podcasts). Documented resources cover Podcasts, Episodes, media file upload authorization, oEmbed embedding, and Analytics reports. Write operations use POST with form-encoded bodies. This description is grounded in Podbean's public developer documentation; some request/response schemas are represented generically and should be reconciled against the live docs.\n\nContact Support:\n Name: Podbean Developer Platform",
+      "type": "text/plain"
+    }
+  }
+}
