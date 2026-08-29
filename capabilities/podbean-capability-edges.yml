@@ -1,0 +1,26 @@
+slug: podbean
+provider: Podbean
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Analytics
+  spec_file: podbean-analytics-api-openapi.yml
+  capability_id: BC-3770.30
+  capability_id_l1: BC-3770
+  capability_name: Content Performance Analytics
+  confidence: 0.7
+  evidence: GET /analytics/podcastReports 'Podcast download reports'; GET /analytics/podcastEngagementReports
+    'Podcast engagement reports'
+  reason: Reporting on how published podcast content performs (downloads, engagement) is content performance
+    analytics; the additional 'Advertising reports' operation introduces some overlap with ad revenue
+    reporting.

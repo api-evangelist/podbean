@@ -236,6 +236,9 @@ apis:
   - type: APIReference
     url: https://developers.podbean.com/podbean-api-docs/#api-oEmbed
 common:
+- type: CapabilityMap
+  url: capabilities/podbean-capability-edges.yml
+  name: Podbean Business Capability Map
 - type: AgenticAccess
   url: agentic-access/podbean-agentic-access.yml
 - type: DomainSecurity
