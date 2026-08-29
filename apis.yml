@@ -11,6 +11,18 @@ description: >-
   players via oEmbed, and pull download, engagement, and advertising analytics
   reports. Apps can act on behalf of a single podcast (Client Credentials) or
   across many podcasts (Multiple Podcasts tokens) for agencies and networks.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
