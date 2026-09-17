@@ -173,16 +173,16 @@ apis:
     url: https://developers.podbean.com/apidoc/widget
   - type: APIReference
     url: https://developers.podbean.com/podbean-api-docs/#api-oEmbed
-- aid: podbean:podbean-oembed-api
-  name: Podbean oEmbed API
-  description: Embeddable player markup and metadata for a podcast or episode URL.
+- aid: podbean:podbean-podcast-api
+  name: Podbean Podcast API
+  description: Read the authorized podcast profile and settings.
   humanURL: https://developers.podbean.com/podbean-api-docs/
   baseURL: https://api.podbean.com/v1
   tags:
-  - oEmbed
+  - Podcast
   properties:
   - type: OpenAPI
-    url: openapi/podbean-oembed-api-openapi.yml
+    url: openapi/podbean-podcast-api-openapi.yml
   - type: Documentation
     url: https://developers.podbean.com/podbean-api-docs/
   - type: APIReference
@@ -204,16 +204,16 @@ apis:
     url: https://developers.podbean.com/apidoc/widget
   - type: APIReference
     url: https://developers.podbean.com/podbean-api-docs/#api-oEmbed
-- aid: podbean:podbean-podcast-api
-  name: Podbean Podcast API
-  description: Read the authorized podcast profile and settings.
+- aid: podbean:podbean-o-embed-api
+  name: Podbean o Embed API
+  description: Embeddable player markup and metadata for a podcast or episode URL.
   humanURL: https://developers.podbean.com/podbean-api-docs/
   baseURL: https://api.podbean.com/v1
   tags:
-  - Podcast
+  - o Embed
   properties:
   - type: OpenAPI
-    url: openapi/podbean-podcast-api-openapi.yml
+    url: openapi/podbean-o-embed-api-openapi.yml
   - type: Documentation
     url: https://developers.podbean.com/podbean-api-docs/
   - type: APIReference
