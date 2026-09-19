@@ -179,6 +179,8 @@ apis:
   humanURL: https://developers.podbean.com/podbean-api-docs/
   baseURL: https://api.podbean.com/v1
   tags:
+  - Podcasts
+  tags_raw:
   - Podcast
   properties:
   - type: OpenAPI
@@ -210,6 +212,8 @@ apis:
   humanURL: https://developers.podbean.com/podbean-api-docs/
   baseURL: https://api.podbean.com/v1
   tags:
+  - oEmbed
+  tags_raw:
   - o Embed
   properties:
   - type: OpenAPI
