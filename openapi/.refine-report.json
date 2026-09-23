@@ -1,24 +1,33 @@
 {
   "provider": "podbean",
   "sources": [
-    "podbean-analytics-api-openapi.yml",
-    "podbean-authentication-api-openapi.yml",
-    "podbean-episode-api-openapi.yml",
-    "podbean-file-upload-api-openapi.yml",
-    "podbean-oembed-api-openapi.yml",
-    "podbean-podcast-api-openapi.yml"
+    "_original/podbean-openapi.yml"
   ],
   "outputs": [
     "podbean-analytics-api-openapi.yml",
     "podbean-authentication-api-openapi.yml",
     "podbean-episode-api-openapi.yml",
     "podbean-file-upload-api-openapi.yml",
-    "podbean-oembed-api-openapi.yml",
-    "podbean-podcast-api-openapi.yml"
+    "podbean-podcast-api-openapi.yml",
+    "podbean-oembed-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "podbean-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "superseded outputs removed: podbean-o-embed-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 6 total)"
+  ],
+  "skipped": [
+    "podbean-analytics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "podbean-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "podbean-episode-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "podbean-file-upload-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "podbean-o-embed-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "podbean-podcast-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

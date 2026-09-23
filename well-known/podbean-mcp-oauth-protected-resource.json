@@ -1,0 +1,1 @@
+{"resource":"https://mcp.podbean.com/mcp","authorization_servers":["https://mcp.podbean.com/"],"scopes_supported":["podcast_read","podcast_update","episode_read","episode_publish"],"resource_name":"Podbean MCP","resource_documentation":"https://developers.podbean.com/podbean-api-docs/"}
