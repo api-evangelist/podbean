@@ -166,21 +166,7 @@ paths:
                       type: object
                       additionalProperties: true
 components:
-  responses:
-    BadRequest:
-      description: The request was malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        error_description:
-          type: string
     AccessToken:
       type: object
       properties:
@@ -195,6 +181,20 @@ components:
           type: string
         scope:
           type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+  responses:
+    BadRequest:
+      description: The request was malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2
