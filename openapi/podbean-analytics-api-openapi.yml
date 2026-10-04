@@ -112,6 +112,13 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    AccessTokenQuery:
+      name: access_token
+      in: query
+      required: false
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Missing or invalid access token.
@@ -127,13 +134,6 @@ components:
           type: string
         error_description:
           type: string
-  parameters:
-    AccessTokenQuery:
-      name: access_token
-      in: query
-      required: false
-      schema:
-        type: string
   securitySchemes:
     oauth2:
       type: oauth2
