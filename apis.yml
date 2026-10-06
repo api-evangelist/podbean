@@ -46,7 +46,7 @@ tags:
 - Analytics
 - Monetization
 created: '2026-07-05'
-modified: '2026-07-05'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: podbean:podbean-analytics-api
@@ -238,6 +238,8 @@ apis:
   - type: APIReference
     url: https://developers.podbean.com/podbean-api-docs/#api-oEmbed
 common:
+- url: https://blog.podbean.com/feed/
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/podbean-capability-edges.yml
   name: Podbean Business Capability Map
