@@ -1,4 +1,4 @@
-# Podbean (podbean)
+# Podbean
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,152 +64,143 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Podbean is a podcast hosting, distribution, and monetization platform for creators, businesses, and networks. Its public REST API (base `https://api.podbean.com/v1`) uses OAuth 2.0 and lets third-party apps and integrations manage a user's podcast programmatically - read podcast profiles, list and publish/update/delete episodes, authorize media file uploads, embed players via oEmbed, and pull download, engagement, and advertising analytics reports.
+Podbean is a podcast hosting, distribution, and monetization platform for creators, businesses, and networks. Its public REST API (base https://api.podbean.com/v1) uses OAuth 2.0 and lets third-party apps and integrations manage a user's podcast programmatically - read podcast profiles, list and publish/update/delete episodes, authorize media file uploads, embed players via oEmbed, and pull download, engagement, and advertising analytics reports. Apps can act on behalf of a single podcast (Client Credentials) or across many podcasts (Multiple Podcasts tokens) for agencies and networks.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/podbean/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/podbean/refs/heads/main/apis.yml)
+**Areas:** Podcasts · Podcast Hosting · Media · Audio · Episodes · Analytics · Monetization
 
-## Access Model
+## Podbean on APIs.io
 
-The Podbean API is a **public, documented REST API** with **OAuth 2.0** authentication. Any developer can register an app at [developers.podbean.com](https://developers.podbean.com/) to obtain a Client ID and Client Secret. There are three ways to get a token:
+Everything profiled for Podbean is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/podbean/](https://apis.io/providers/podbean/)** — or go straight to one of the APIs or properties below.
 
-- **Authorization Code** - a third-party app redirects the user through the Login Dialog (`GET /v1/dialog/oauth`), then exchanges the returned code for an access token at `POST /v1/oauth/token`. Used to act on behalf of another Podbean user's podcast.
-- **Client Credentials** - an app managing **its own** podcast requests a token directly from `POST /v1/oauth/token` with `grant_type=client_credentials`.
-- **Multiple Podcasts token** - agencies and networks that manage many podcasts obtain per-podcast tokens via `POST /v1/oauth/multiplePodcastsToken`.
+### APIs (6)
 
-Tokens can be inspected with `POST /v1/oauth/debugToken` and (for authorization-code apps) refreshed via the refresh-token grant. All API calls are made over HTTPS to `https://api.podbean.com/v1`.
+- [Podbean Analytics API](https://apis.io/apis/podbean/podbean-analytics-api/) — Download, engagement, and advertising reports.
+- [Podbean Authentication API](https://apis.io/apis/podbean/podbean-authentication-api/) — OAuth 2.0 login dialog, token exchange, inspection, and multi-podcast tokens.
+- [Podbean Episode API](https://apis.io/apis/podbean/podbean-episode-api/) — List, read, publish, update, and delete podcast episodes.
+- [Podbean File Upload API](https://apis.io/apis/podbean/podbean-file-upload-api/) — Authorize a media/image upload and list uploaded media files.
+- [Podbean Podcast API](https://apis.io/apis/podbean/podbean-podcast-api/) — Read the authorized podcast profile and settings.
+- [Podbean o Embed API](https://apis.io/apis/podbean/podbean-o-embed-api/) — Embeddable player markup and metadata for a podcast or episode URL.
 
-## Tags
+### Published properties
 
-- Podcasting
-- Podcast Hosting
-- Media
-- Audio
-- Episodes
-- Analytics
-- Monetization
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Timestamps
+#### MCP servers (1)
 
-- **Created:** 2026-07-05
-- **Modified:** 2026-07-05
+Model Context Protocol servers that expose the API to agents.
 
-## APIs
+- [podbean](https://apis.io/servers/podbean/podbean/)
 
-### Podbean Podcasts API
+#### Agentic access (1)
 
-Read the authorized podcast's profile and settings, and - via the Multiple Podcasts token flow - enumerate the podcasts an agency or network app is authorized to manage.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://developers.podbean.com/podbean-api-docs/](https://developers.podbean.com/podbean-api-docs/)
-- **Base URL:** `https://api.podbean.com/v1`
+- [Podbean Agentic Access](https://apis.io/agentic-access/podbean/podbean-agentic-access/)
 
-#### Tags
+#### Collections (7)
 
-- Podcasts
-- Channels
-- Account
+Postman and Open Collection request collections.
 
-#### Properties
+- [Podbean API](https://apis.io/collections/podbean/open-podbean/)
+- [Podbean Analytics API](https://apis.io/collections/podbean/open-podbean-analytics-api/)
+- [Podbean Analytics Authentication API](https://apis.io/collections/podbean/open-podbean-authentication-api/)
+- [Podbean Analytics Episode API](https://apis.io/collections/podbean/open-podbean-episode-api/)
+- [Podbean Analytics File Upload API](https://apis.io/collections/podbean/open-podbean-file-upload-api/)
+- [Podbean Analytics oEmbed API](https://apis.io/collections/podbean/open-podbean-oembed-api/)
+- [Podbean Analytics Podcast API](https://apis.io/collections/podbean/open-podbean-podcast-api/)
 
-- [Documentation](https://developers.podbean.com/podbean-api-docs/)
-- [API Reference](https://developers.podbean.com/podbean-api-docs/#api-Podcast)
-- [OpenAPI](openapi/podbean-openapi.yml)
-- [Postman Collection](collections/podbean.postman_collection.json)
-- [Open Collection](collections/podbean.opencollection.json)
+#### Security (2)
 
-### Podbean Episodes API
+Authentication, trust centre, and vulnerability disclosure.
 
-List, read, publish, update, and delete podcast episodes. Publishing references a `media_key` (and optional `logo_key`) returned by the file upload authorization flow, so the API can push new audio or video episodes end to end.
+- [Podbean Authentication](https://apis.io/security/podbean/podbean-authentication/)
+- [Podbean Domain Security](https://apis.io/security/podbean/podbean-domain-security/)
 
-- **Human URL:** [https://developers.podbean.com/podbean-api-docs/#api-Episode](https://developers.podbean.com/podbean-api-docs/#api-Episode)
-- **Base URL:** `https://api.podbean.com/v1`
+#### OAuth scopes (1)
 
-#### Tags
+The permissions the API asks for.
 
-- Episodes
-- Publishing
-- Content
+- [Podbean Scopes](https://apis.io/scopes/podbean/podbean-scopes/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [API Reference](https://developers.podbean.com/podbean-api-docs/#api-Episode)
-- [Documentation](https://help.podbean.com/support/solutions/articles/25000008051-publishing-a-new-podcast-episode-via-podbean-api)
-- [OpenAPI](openapi/podbean-openapi.yml)
-- [Postman Collection](collections/podbean.postman_collection.json)
-- [Open Collection](collections/podbean.opencollection.json)
+Published plans, tiers and prices.
 
-### Podbean Media Files API
+- [Podbean Plans Pricing](https://apis.io/plans/podbean/podbean-plans-pricing/)
 
-Authorize an upload to obtain a presigned URL and a file key, PUT the media or image file directly to that URL, and list previously uploaded media files. The file key is then passed to the Episodes API when publishing.
+#### Rate limits (1)
 
-- **Human URL:** [https://developers.podbean.com/podbean-api-docs/#api-File_upload](https://developers.podbean.com/podbean-api-docs/#api-File_upload)
-- **Base URL:** `https://api.podbean.com/v1`
+Published request limits.
 
-#### Tags
+- [Podbean Rate Limits](https://apis.io/rate-limits/podbean/podbean-rate-limits/)
 
-- Media
-- File Upload
-- Storage
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [API Reference](https://developers.podbean.com/podbean-api-docs/#api-File_upload)
-- [OpenAPI](openapi/podbean-openapi.yml)
-- [Postman Collection](collections/podbean.postman_collection.json)
-- [Open Collection](collections/podbean.opencollection.json)
+- [Podbean Finops](https://apis.io/finops/podbean/podbean-finops/)
 
-### Podbean Analytics API
+## Where to find this API
 
-Pull podcast performance data - download reports, listener engagement reports, and advertising reports - for reporting dashboards and external analytics tools such as Dataddo.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- **Human URL:** [https://developers.podbean.com/podbean-api-docs/#api-Analytic](https://developers.podbean.com/podbean-api-docs/#api-Analytic)
-- **Base URL:** `https://api.podbean.com/v1`
-
-#### Tags
-
-- Analytics
-- Reports
-- Downloads
-
-#### Properties
-
-- [API Reference](https://developers.podbean.com/podbean-api-docs/#api-Analytic)
-- [OpenAPI](openapi/podbean-openapi.yml)
-- [Postman Collection](collections/podbean.postman_collection.json)
-- [Open Collection](collections/podbean.opencollection.json)
-
-### Podbean oEmbed API
-
-Standard oEmbed endpoint that returns embeddable player markup and metadata for a Podbean podcast or episode URL, for use in websites, CMSs, and rich link previews. No authentication required.
-
-- **Human URL:** [https://developers.podbean.com/apidoc/widget](https://developers.podbean.com/apidoc/widget)
-- **Base URL:** `https://api.podbean.com/v1`
-
-#### Tags
-
-- oEmbed
-- Embed
-- Player
-
-#### Properties
-
-- [Documentation](https://developers.podbean.com/apidoc/widget)
-- [API Reference](https://developers.podbean.com/podbean-api-docs/#api-oEmbed)
-- [OpenAPI](openapi/podbean-openapi.yml)
-- [Postman Collection](collections/podbean.postman_collection.json)
-- [Open Collection](collections/podbean.opencollection.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/podbean)
-- [LinkedIn](https://www.linkedin.com/company/podbean)
 - [Website](https://www.podbean.com)
 - [Documentation](https://developers.podbean.com/podbean-api-docs/)
-- [Plans](plans/podbean-plans-pricing.yml)
-- [Rate Limits](rate-limits/podbean-rate-limits.yml)
-- [Fin Ops](finops/podbean-finops.yml)
-- [Sign Up](https://developers.podbean.com/)
+- [Sign up](https://developers.podbean.com/)
+- [Blog](https://www.podbean.com/podcast-news)
+- [GitHub](https://github.com/podbean)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 31.3** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 48.9 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 21.1 |
+
+**Agent readiness 43.9** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 21.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/podbean/](https://apis.io/providers/podbean/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Podbean: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/podbean/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
